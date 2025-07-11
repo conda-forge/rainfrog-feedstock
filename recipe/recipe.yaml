@@ -18,6 +18,7 @@ build:
         if [[ "${target_platform}" == "osx-arm64" ]]; then
           export LIBICONV_LIB_DIR="${PREFIX}/lib"
           export LIBICONV_INCLUDE_DIR="${PREFIX}/include"
+          export RUSTFLAGS="-L${PREFIX}/lib -liconv"
         fi
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - cargo install --no-track --locked --root ${{ PREFIX }} --path .
@@ -28,6 +29,9 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
     - cargo-bundle-licenses
+  host:
+    - if: osx and arm64
+      then: libiconv
 
 tests:
   - script:
