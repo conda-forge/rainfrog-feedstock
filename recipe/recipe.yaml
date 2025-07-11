@@ -11,18 +11,16 @@ source:
   sha256: 1d9322296b8fb0c789ad3a3b13284f39e15a55efb479b3d2e2d5954ec3c0ea73
 
 build:
+  number: 0
   script:
     - if: osx
-    - then:
-      - |
+      then: |
         if [[ "${target_platform}" == "osx-arm64" ]]; then
           export LIBICONV_LIB_DIR="${PREFIX}/lib"
           export LIBICONV_INCLUDE_DIR="${PREFIX}/include"
         fi
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - cargo install --no-track --locked --root ${{ PREFIX }} --path .
-
-  number: 0
 
 requirements:
   build:
