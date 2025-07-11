@@ -28,9 +28,6 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
     - cargo-bundle-licenses
-  host:
-    - if: osx and arm64
-      then: libiconv
 
 tests:
   - script:
