@@ -20,8 +20,9 @@ build:
         if [[ "${target_platform}" == "osx-arm64" ]]; then
           export LIBICONV_LIB_DIR="${PREFIX}/lib"
           export LIBICONV_INCLUDE_DIR="${PREFIX}/include"
-          export RUSTFLAGS="${RUSTFLAGS} -L${PREFIX}/lib"
-          export LDFLAGS="${LDFLAGS} -L${PREFIX}/lib"
+          export RUSTFLAGS="-L${PREFIX}/lib -l iconv"
+          export CARGO_BUILD_RUSTFLAGS="-L${PREFIX}/lib -l iconv"
+          export LDFLAGS="-L${PREFIX}/lib -l iconv"
         fi
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - cargo install --no-track --locked --root ${{ PREFIX }} --path .
