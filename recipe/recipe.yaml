@@ -39,8 +39,8 @@ requirements:
       then: libiconv
     - pkg-config
   host:
-    if: win
-    then: libssh2
+    - if: win
+      then: libssh2
 
 tests:
   - script:
