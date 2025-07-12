@@ -43,6 +43,7 @@ requirements:
   host:
     - if: win
       then:
+        - libgit2
         - libssh2
         - openssl
 
