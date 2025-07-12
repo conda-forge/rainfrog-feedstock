@@ -22,15 +22,10 @@ build:
         export DYLD_LIBRARY_PATH="${BUILD_PREFIX}/lib:${DYLD_LIBRARY_PATH:-}"
         export LIBICONV_LIB_DIR="${BUILD_PREFIX}/lib"
         export LIBICONV_INCLUDE_DIR="${BUILD_PREFIX}/include"
-
         export LIBGIT2_SYS_USE_PKG_CONFIG=1
-        
-
         export RUSTFLAGS="-L${BUILD_PREFIX}/lib"
         export CARGO_BUILD_RUSTFLAGS="-L${BUILD_PREFIX}/lib"
-        
         export LDFLAGS="-L${BUILD_PREFIX}/lib -liconv"
-
         ls -la ${BUILD_PREFIX}/lib | grep iconv
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - cargo install --no-track --locked --root ${{ PREFIX }} --path .
@@ -44,8 +39,6 @@ requirements:
     - if: build_platform != target_platform
       then: libiconv
     - pkg-config
-  host:
-    - libiconv
 
 tests:
   - script:
