@@ -26,8 +26,6 @@ build:
         export RUSTFLAGS="-L${BUILD_PREFIX}/lib"
         export CARGO_BUILD_RUSTFLAGS="-L${BUILD_PREFIX}/lib"
         export LDFLAGS="-L${BUILD_PREFIX}/lib -liconv"
-    - if: win
-      then: set LIBSSH2_SYS_USE_PKG_CONFIG=1
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - cargo install --no-track --locked --root ${{ PREFIX }} --path .
 
@@ -40,12 +38,6 @@ requirements:
     - if: build_platform != target_platform
       then: libiconv
     - pkg-config
-  host:
-    - if: win
-      then:
-        - libgit2
-        - libssh2
-        - openssl
 
 tests:
   - script:
