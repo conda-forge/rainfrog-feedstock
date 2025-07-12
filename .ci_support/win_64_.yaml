@@ -6,6 +6,8 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+libssh2:
+- '1'
 rust_compiler:
 - rust
 target_platform:
