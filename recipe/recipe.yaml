@@ -52,6 +52,7 @@ requirements:
     - if: win
       then:
         - libssh2
+        - openssl
 
 tests:
   - script:
