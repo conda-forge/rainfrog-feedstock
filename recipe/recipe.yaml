@@ -28,6 +28,12 @@ build:
         export LDFLAGS="-L${BUILD_PREFIX}/lib -liconv"
     - if: win
       then: |
+        set "LIBGIT2_SYS_USE_PKG_CONFIG=1"
+        set "LIBSSH2_SYS_USE_PKG_CONFIG=1"
+        set "PKG_CONFIG_PATH=%LIBRARY_PREFIX%\lib\pkgconfig"
+        set "OPENSSL_DIR=%LIBRARY_PREFIX%"
+        set "OPENSSL_INCLUDE_DIR=%LIBRARY_PREFIX%\include"
+        set "OPENSSL_LIB_DIR=%LIBRARY_PREFIX%\lib"
         set "LIB=%LIBRARY_PREFIX%\lib;%LIB%"
         set "INCLUDE=%LIBRARY_PREFIX%\include;%INCLUDE%"
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
@@ -42,6 +48,10 @@ requirements:
     - if: build_platform != target_platform
       then: libiconv
     - pkg-config
+  host:
+    - if: win
+      then:
+        - libssh2
 
 tests:
   - script:
