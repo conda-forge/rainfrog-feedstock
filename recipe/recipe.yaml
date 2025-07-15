@@ -34,8 +34,9 @@ build:
         set "OPENSSL_DIR=%LIBRARY_PREFIX%"
         set "OPENSSL_INCLUDE_DIR=%LIBRARY_PREFIX%\include"
         set "OPENSSL_LIB_DIR=%LIBRARY_PREFIX%\lib"
-        set "LIB=%LIBRARY_PREFIX%\lib;%LIB%"
-        set "INCLUDE=%LIBRARY_PREFIX%\include;%INCLUDE%"
+        set "LIB=%BUILD_PREFIX%\Library\lib;%LIBRARY_PREFIX%\lib;%LIB%"
+        set "INCLUDE=%BUILD_PREFIX%\Library\include;%LIBRARY_PREFIX%\include;%INCLUDE%"
+        set "LINK_FLAGS=/LIBPATH:%BUILD_PREFIX%\Library\lib"
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - cargo install --no-track --locked --root ${{ PREFIX }} --path .
 
