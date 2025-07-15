@@ -36,7 +36,8 @@ build:
         set "OPENSSL_LIB_DIR=%LIBRARY_PREFIX%\lib"
         set "LIB=%BUILD_PREFIX%\Library\lib;%LIBRARY_PREFIX%\lib;%LIB%"
         set "INCLUDE=%BUILD_PREFIX%\Library\include;%LIBRARY_PREFIX%\include;%INCLUDE%"
-        set "LINK_FLAGS=/LIBPATH:%BUILD_PREFIX%\Library\lib"
+        set "LINK_FLAGS=%LINK_FLAGS% /LIBPATH:%LIBRARY_PREFIX%\Library\lib"
+
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - cargo install --no-track --locked --root ${{ PREFIX }} --path .
 
@@ -51,6 +52,9 @@ requirements:
     - if: win
       then: libssh2
     - pkg-config
+  host:
+    - if: win
+      then: libssh2
 
 tests:
   - script:
