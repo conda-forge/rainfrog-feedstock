@@ -28,9 +28,8 @@ build:
         export LDFLAGS="-L${BUILD_PREFIX}/lib -liconv"
     - if: win
       then: |
-        set "LIBGIT2_SYS_USE_SSH=0"
-        set "CARGO_FEATURE_SSH=false"
-        set "LIBGIT2_NO_SSH=true"
+        set "LIB=%LIBRARY_PREFIX%\lib;%LIB%"
+        set "INCLUDE=%LIBRARY_PREFIX%\include;%INCLUDE%"
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - cargo install --no-track --locked --root ${{ PREFIX }} --path .
 
