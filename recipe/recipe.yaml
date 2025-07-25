@@ -1,6 +1,6 @@
 context:
   name: rainfrog
-  version: "0.3.4"
+  version: "0.3.3"
 
 package:
   name: ${{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/achristmascarl/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 2ff5c24f969058b5eea95fb33955b1e10f5fde0cbfb1d21d5d16c22467b0bfe0
+  sha256: 1d9322296b8fb0c789ad3a3b13284f39e15a55efb479b3d2e2d5954ec3c0ea73
 
 build:
   script:
