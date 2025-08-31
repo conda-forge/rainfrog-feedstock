@@ -36,6 +36,9 @@ requirements:
     - cargo-bundle-licenses
     - if: build_platform != target_platform
       then: libiconv
+  host:
+    - if: unix
+      then: duckdb-cli
 
 tests:
   - script:
