@@ -28,7 +28,7 @@ build:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - if: linux and ppc64le
       # The libduckdb-sys crate not appear to support the powerpc64le architecture
-      then: cargo install --no-track --locked --root ${{ PREFIX }} --path . --no-default-features --features "arboard"
+      then: cargo install --no-track --locked --root ${{ PREFIX }} --path . --no-default-features --features "musl"
       else: cargo install --no-track --locked --root ${{ PREFIX }} --path .
 
 requirements:
