@@ -26,7 +26,7 @@ build:
         export LDFLAGS="-L${BUILD_PREFIX}/lib -liconv -lc++ -lc++abi"
         export RUSTFLAGS="-C link-arg=-lc++ -C link-arg=-lc++abi -L${BUILD_PREFIX}/lib"
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-    - if: linux and ppc64le
+    - if: (linux and ppc64le) or (osx and arm64)
       # The libduckdb-sys crate not appear to support the powerpc64le architecture
       then: cargo install --no-track --locked --root ${{ PREFIX }} --path . --no-default-features --features "musl"
       else: cargo install --no-track --locked --root ${{ PREFIX }} --path .
