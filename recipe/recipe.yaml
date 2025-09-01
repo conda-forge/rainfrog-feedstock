@@ -13,20 +13,8 @@ source:
 build:
   number: 0
   script:
-    - if: osx and arm64
-      then: |
-        export LIBRARY_PATH="${BUILD_PREFIX}/lib:${LIBRARY_PATH:-}"
-        export LD_LIBRARY_PATH="${BUILD_PREFIX}/lib:${LD_LIBRARY_PATH:-}"
-        export DYLD_LIBRARY_PATH="${BUILD_PREFIX}/lib:${DYLD_LIBRARY_PATH:-}"
-        export LIBICONV_LIB_DIR="${BUILD_PREFIX}/lib"
-        export LIBICONV_INCLUDE_DIR="${BUILD_PREFIX}/include"
-        export LIBGIT2_SYS_USE_PKG_CONFIG=1
-        export CARGO_BUILD_RUSTFLAGS="-C link-arg=-lc++ -L${BUILD_PREFIX}/lib"
-        export CXXFLAGS="-stdlib=libc++"
-        export LDFLAGS="-L${BUILD_PREFIX}/lib -liconv -lc++ -lc++abi"
-        export RUSTFLAGS="-C link-arg=-lc++ -C link-arg=-lc++abi -L${BUILD_PREFIX}/lib"
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-    - if: (linux and ppc64le) or (osx and arm64)
+    - if: linux and ppc64le
       # The libduckdb-sys crate not appear to support the powerpc64le architecture
       then: cargo install --no-track --locked --root ${{ PREFIX }} --path . --no-default-features --features "musl"
       else: cargo install --no-track --locked --root ${{ PREFIX }} --path .
