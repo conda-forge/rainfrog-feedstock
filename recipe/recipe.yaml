@@ -1,6 +1,6 @@
 context:
   name: rainfrog
-  version: "0.3.17"
+  version: "0.3.18"
 
 package:
   name: ${{ name|lower }}
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://github.com/achristmascarl/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: bc5aa6a366433531885fc6b730c8f6b03e405792bff54ca0e9168891b6d9f589
+  sha256: 3854293991b0dac036d640a7194be7fd71440c1e8739ffad39bab8dc651c8ade
 
 build:
-  number: 1
+  number: 0
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - if: linux and ppc64le
